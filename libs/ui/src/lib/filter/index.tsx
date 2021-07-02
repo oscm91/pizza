@@ -20,7 +20,7 @@ export function Filter({ children, onClick, open }: FilterProps) {
           className="flex relative justify-center py-2 px-6"
           onClick={() => onClick(!open)}
         >
-          <button className="text-azul" onClick={() => onClick(!open)}>
+          <button className="text-primary" onClick={() => onClick(!open)}>
             FILTRAR
           </button>
           <span className="absolute top-0 right-0 p-2">

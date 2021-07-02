@@ -6,11 +6,11 @@ import { Head, Row, Table } from '../table';
 import { Header } from '../header';
 import { Tabs } from '../tabs';
 
-export interface HomeProps {
+export interface DashboardProps {
   facade: any;
 }
 
-export function Home({ facade }: HomeProps) {
+export function Dashboard({ facade }: DashboardProps) {
   const [openFilter, setOpenFilter] = useState(false);
   const { filtered } = facade.getState() || { filtered: [] };
   const dataTitle = {
@@ -181,4 +181,4 @@ export function Home({ facade }: HomeProps) {
   );
 }
 
-export default Home;
+export default Dashboard;

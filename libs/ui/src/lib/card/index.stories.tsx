@@ -13,10 +13,10 @@ export const card = () => {
 
   return (
     <Card {...props}>
-      <h4 className="bg-clip-text text-transparent bg-gradient-to-r from-azul to-rojo text-4xl font-bold">
+      <h4 className="bg-clip-text text-transparent bg-primary text-4xl font-bold">
         $1'560.000
       </h4>
-      <p className="text-azul text-xs">Septiembre 21</p>
+      <p className="text-primary text-xs">Septiembre 21</p>
     </Card>
   );
 };

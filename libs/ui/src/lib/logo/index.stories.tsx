@@ -12,7 +12,7 @@ export const logo = () => {
   };
 
   return (
-    <div className="p-4 bg-gradient-to-r from-azul via-azul to-rojo">
+    <div className="p-4 bg-primary">
       <Logo {...props}>Button</Logo>
     </div>
   );

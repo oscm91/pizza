@@ -9,8 +9,8 @@ export function Tabs({ children }: TabsProps) {
     if (React.isValidElement(child)) {
       return React.cloneElement(child, {
         className: child.props['data-active']
-          ? 'w-full py-2 px-10 space-x-2 whitespace-nowrap text-center rounded-full cursor-pointer bg-grisclaro text-azul text-md'
-          : 'w-full py-2 px-10 space-x-2 whitespace-nowrap text-center bg-white rounded-full cursor-pointer hover:bg-grisclaro text-azul text-md',
+          ? 'w-full py-2 px-10 space-x-2 whitespace-nowrap text-center rounded-full cursor-pointer bg-grisclaro text-white text-md'
+          : 'w-full py-2 px-10 space-x-2 whitespace-nowrap text-center bg-white rounded-full cursor-pointer hover:bg-grisclaro text-primary text-md',
       });
     }
     return child;

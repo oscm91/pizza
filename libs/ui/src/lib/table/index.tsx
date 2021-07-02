@@ -52,7 +52,7 @@ export function Row({ children, index }: RowProps) {
 export function Table({ children, title }: TableProps) {
   return (
     <div className="flex flex-col shadow-md rounded-b-lg rounded-t-xl bg-white overflow-hidden">
-      <span className="flex font-light rounded-t-xl text-white justify-between px-5 py-2 bg-gradient-to-r from-azul via-azul to-rojo overflow-hidden">
+      <span className="flex font-light rounded-t-xl text-white justify-between px-5 py-2 bg-primary overflow-hidden">
         {title}
       </span>
       <div className="flex overflow-y-auto">

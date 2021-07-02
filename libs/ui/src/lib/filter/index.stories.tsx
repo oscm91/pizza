@@ -16,13 +16,13 @@ export const filter = () => {
     <div className="flex">
       <Filter {...props}>
         <div className="flex flex-col py-4">
-          <span className="text-azul flex whitespace-nowrap items-center space-x-3">
+          <span className="text-primary flex whitespace-nowrap items-center space-x-3">
             <input type="checkbox" /> <label>Cobro con datafono</label>
           </span>
-          <span className="text-azul flex whitespace-nowrap items-center space-x-3">
+          <span className="text-primary flex whitespace-nowrap items-center space-x-3">
             <input type="checkbox" /> <label>Cobro con link de pagos</label>
           </span>
-          <span className="text-azul flex whitespace-nowrap items-center space-x-3">
+          <span className="text-primary flex whitespace-nowrap items-center space-x-3">
             <input type="checkbox" /> <label>Ver todos</label>
           </span>
           <span className="text-center w-full">
