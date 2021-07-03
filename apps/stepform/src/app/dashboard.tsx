@@ -3,8 +3,8 @@ import { Pages } from '@stepform/ui';
 import { facade } from '@stepform/store';
 import { useHistory } from "react-router-dom";
 
-function Home() {
-  const paymentsFacade = facade.productsFacade();
+function Dashboard() {
+  const paymentsFacade = facade.paymentsFacade();
 
   const history = useHistory();
   const historyFacade = useCallback(() => {
@@ -14,7 +14,7 @@ function Home() {
     }
   }, [history])
 
-  return <Pages.Home facade={paymentsFacade} history={historyFacade()}/>;
+  return <Pages.Dashboard facade={paymentsFacade} history={historyFacade()}/>;
 }
 
-export default Home;
+export default Dashboard;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlusSolid } from '../images';
+import { CloseImage } from '../images';
 
 export interface OrderProps {
   children?: React.ReactNode;
@@ -21,6 +21,7 @@ export function OrderItem({ children, ...props }: OrderItemProps) {
   const Text = React.cloneElement(children[1], {
     className: 'text-primary group-hover:text-white',
   });
+  const Price = children[2] || '';
   return (
     <div
       {...props}
@@ -33,8 +34,9 @@ export function OrderItem({ children, ...props }: OrderItemProps) {
         {Text}
       </div>
       <div className="flex items-center whitespace-nowrap text-left">
-        <span className="flex text-primary block text-xs">$&nbsp;</span><span className="text-secondary block text-xs"> 7.4</span>
+        <span className="flex text-primary block text-xs">$&nbsp;</span><span className="text-secondary block text-xs"> {Price}</span>
       </div>
+      <CloseImage width="20px" />
     </div>
   );
 }

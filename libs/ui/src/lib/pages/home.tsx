@@ -1,182 +1,169 @@
-import React, { useLayoutEffect, useState } from 'react';
-import { CalculatorImage, HelpImage } from '../images';
+import React, { useCallback, useLayoutEffect, useState } from 'react';
+import {
+  HomeSolid,
+  PepperHotSolid,
+  PizzaSliceSolid,
+  SignOutAltSolid,
+  ToolsSolid
+} from '../images';
 import { Card } from '../card';
-import { Filter } from '../filter';
-import { Head, Row, Table } from '../table';
-import { Header } from '../header';
-import { Tabs } from '../tabs';
+import { Menu, MenuItem } from '../menu';
+import { Ingredient, IngredientItem } from '../ingredient';
+import { Mass, MassItem } from '../mass';
+import { Order, OrderItem } from '../order';
+import { saveProduct } from '../../../../store/src/lib/reducers/products/actions';
 
 export interface HomeProps {
   facade: any;
+  history: any;
 }
 
-export function Home({ facade }: HomeProps) {
-  const [openFilter, setOpenFilter] = useState(false);
-  const { filtered } = facade.getState() || { filtered: [] };
-  const dataTitle = {
-    today: 'de hoy',
-    week: 'de esta semana',
-    september: 'de septiembre',
-  };
+export function Home({ facade, history }: HomeProps) {
+  const { ingredients, mass, product } = facade.getState() || {
+    ingredients: [],
+    mass: [],
+    product: {
+      name: '',
+      ingredients: [],
+      mass: undefined,
+      price: 0,
+      resume: [],
+      isCompleted: false,
+    } };
 
-  useLayoutEffect(() => {
-    facade.getData(facade.getSearch());
-  }, []);
+  const addIngredient = useCallback((ingredientName) => {
+    facade.addIngredient(ingredientName)
+  }, [facade.addIngredient])
+
+  const removeIngredient = useCallback((ingredientName) => {
+    facade.removeIngredient(ingredientName)
+  }, [facade.removeIngredient])
+
+  const addMass = useCallback((massName) => {
+    facade.addMass(massName)
+  }, [facade.addMass])
+
+  const removeMass = useCallback((massName) => {
+    facade.removeMass(massName)
+  }, [facade.removeMass])
 
   return (
-    <div className="relative flex flex-col bg-colorbackground">
-      <Header onClick={() => ({})}>
-        <nav className="flex justify-center items-center text-white space-x-8 font-light">
-          <a href="#">Mi negocio</a>
-          <a href="#" className="flex">
-            Ayuda <HelpImage width="15px" />
-          </a>
-        </nav>
-      </Header>
-      <main className="flex flex-col bg-colorbackground p-8">
-        <div className="flex flex-row justify-between space-x-6">
-          <div className="w-5/12">
-            <Card title="Total de ventas de septiembre">
-              <h4 className="bg-clip-text text-transparent bg-primary text-4xl font-bold">
-                $1'560.000
-              </h4>
-              <p className="text-primary text-xs">Septiembre 21</p>
-            </Card>
-          </div>
-          <div className="w-7/12">
-            <Tabs>
-              <span
-                data-active={facade.getSearch() === 'today'}
-                onClick={() => {
-                  facade.setSearch('today');
-                  facade.getData('today');
-                }}
-              >
-                Hoy
-              </span>
-              <span
-                data-active={facade.getSearch() === 'week'}
-                onClick={() => {
-                  facade.setSearch('week');
-                  facade.getData('week');
-                }}
-              >
-                Esta semana
-              </span>
-              <span
-                data-active={facade.getSearch() === 'september'}
-                onClick={() => {
-                  facade.setSearch('september');
-                  facade.getData('september');
-                }}
-              >
-                Septiembre
-              </span>
-            </Tabs>
-            <span className="flex justify-end mt-4">
-              <div className="w-1/2">
-                <Filter open={openFilter} onClick={setOpenFilter}>
-                  <div className="flex flex-col py-4">
-                    <span className="text-primary flex whitespace-nowrap items-center space-x-3">
-                      <input
-                        type="checkbox"
-                        id="datafono"
-                        checked={facade.checkFilter('datafono')}
-                        onChange={(e) => {
-                          facade.setFilters(
-                            'datafono',
-                            !facade.checkFilter('datafono')
-                          );
-                        }}
-                      />{' '}
-                      <label htmlFor="datafono" className="cursor-pointer">
-                        Cobro con datafono
-                      </label>
-                    </span>
-                    <span className="text-primary flex whitespace-nowrap items-center space-x-3">
-                      <input
-                        type="checkbox"
-                        id="link"
-                        checked={facade.checkFilter('link')}
-                        onChange={(e) => {
-                          facade.setFilters(
-                            'link',
-                            !facade.checkFilter('link')
-                          );
-                        }}
-                      />
-                      <label htmlFor="link" className="cursor-pointer">
-                        Cobro con link de pagos
-                      </label>
-                    </span>
-                    <span className="text-primary flex whitespace-nowrap items-center space-x-3">
-                      <input
-                        type="checkbox"
-                        id="all"
-                        checked={facade.checkFilter('all')}
-                        onChange={(e) => {
-                          facade.setFilters('all', !facade.checkFilter('all'));
-                        }}
-                      />{' '}
-                      <label htmlFor="all" className="cursor-pointer">
-                        Ver todos
-                      </label>
-                    </span>
-                    <span className="text-center w-full">
-                      <button
-                        className="mt-4 px-14 py-2 bg-rojo hover:opacity-20 rounded-full font-bold text-white"
-                        onClick={facade.filter}
-                      >
-                        Aplicar
-                      </button>
-                    </span>
-                  </div>
-                </Filter>
-              </div>
-            </span>
-          </div>
+    <div className="flex overflow-y-auto relative flex-row h-screen bg-backcontent">
+      <div className="sticky top-0 flex-none">
+        <div className="inline-flex overflow-hidden flex-col justify-between px-2 h-screen bg-white rounded-l-xl">
+          <Menu>
+            <MenuItem
+              data-active={'/' === history.getPathname}
+              onClick={() => {
+                history.goTo('/');
+              }}
+            >
+              <HomeSolid />
+            </MenuItem>
+            <MenuItem
+              data-active={'/dashboard' === history.getPathname}
+              onClick={() => {
+                history.goTo('/dashboard');
+              }}
+            >
+              <ToolsSolid />
+            </MenuItem>
+          </Menu>
+          <Menu>
+            <MenuItem
+              onClick={() => {
+                console.log('logout');
+              }}
+            >
+              <SignOutAltSolid />
+            </MenuItem>
+          </Menu>
         </div>
-        <div className="mt-4">
-          <Table title={`Total de ventas ${dataTitle[facade.getSearch()]}`}>
-            <Head>
-              <div>Transacción</div>
-              <div>Fecha y hora</div>
-              <div>Método de pago</div>
-              <div>ID transacción</div>
-              <div>Bold Monto</div>
-            </Head>
-            {filtered.map((item: any, i) => (
-              <Row index={i} key={item.id}>
-                <div>
-                  <span className="flex">
-                    <CalculatorImage width="15px" /> {item.transaction_name}
-                  </span>
-                </div>
-                <div>
-                  <p className="whitespace-nowrap text-grisclaro">
-                    {item.date}
+      </div>
+      <div
+        className="flex flex-grow bg-backcontent"
+        style={{ height: 'max-content' }}
+      >
+        <main className="flex-col flex-grow px-4 pt-10">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="font-bold text-lg text-secondary">Nombre de la pizza</h2>
+            <input value={product.name} onChange={(e) => facade.setName(e.target.value)} className="py-2 px-14 font-bold text-secondary rounded-full border-2 border-primary bg-white hover:opacity-20 focus:opacity-100 focus:outline-none" type="text" />
+          </div>
+          <div className="flex flex-col mb-4">
+            <h2 className="font-bold text-lg text-secondary mb-2">Ingredientes</h2>
+            <Ingredient>
+              {ingredients.map(({ name }, i) => {
+                return (<IngredientItem
+                  key={name + i}
+                  onClick={() => {
+                    addIngredient(name)
+                  }}
+                >
+                  <PepperHotSolid />
+                  <p>{name}</p>
+                </IngredientItem>)
+              })}
+            </Ingredient>
+          </div>
+          <div className="flex flex-col">
+            <h2 className="font-bold text-lg text-secondary mb-2">Base</h2>
+            <Mass>
+              {mass.map(({ name, price }, i) => {
+                return (<MassItem
+                  key={name + i}
+                  onClick={() => {
+                    addMass(name);
+                  }}
+                >
+                  <PizzaSliceSolid />
+                  <p>
+                    {name}
+                    <span className="block text-xs text-secondary">$ {new Intl.NumberFormat("es-ES").format(price)}</span>
                   </p>
-                </div>
-                <div>
-                  <p className="whitespace-nowrap text-grisclaro">
-                    {item.payment_method}
-                  </p>
-                </div>
-                <div>
-                  <p className="whitespace-nowrap text-grisclaro">
-                    {item.transaction_id}
-                  </p>
-                </div>
-                <div>
-                  <span className="text-azul">{item.amount}</span>
-                  <span className="text-grisclaro">Deducción Bold</span>
-                  <span className="text-rojo">{item.deductions}</span>
-                </div>
-              </Row>
-            ))}
-          </Table>
+                </MassItem>)
+              })}
+            </Mass>
+          </div>
+        </main>
+        <div className="flex-col flex-none space-y-4 pb-4">
+          <Card title="Total de la pizza">
+            <h4 className="text-4xl font-bold text-transparent bg-clip-text bg-primary">
+              $ {new Intl.NumberFormat("es-ES").format(product.price)}
+            </h4>
+            <p className="text-xs text-primary">Pesos Colombianos</p>
+          </Card>
+          <Order>
+            {product.resume.map(({name, price, quantity, type}, i) => {
+              return (<OrderItem
+                key={name + i}
+                onClick={() => {
+                  if(type === 'ingredient'){
+                    removeIngredient(name)
+                  }else{
+                    removeMass(name)
+                  }
+                }}
+              >
+                { type === 'ingredient' ? <PepperHotSolid /> : <PizzaSliceSolid />}
+                <p>
+                  {name}
+                  { type === 'ingredient' && <span className="block text-xs text-secondary">x {quantity}</span>}
+                </p>
+                {new Intl.NumberFormat("es-ES").format(price)}
+              </OrderItem>)
+            })}
+          </Order>
+          <span className="w-full text-center">
+            <button
+              disabled={!product.isCompleted}
+              className={`py-2 px-14 mt-4 font-bold text-white rounded-full bg-primary hover:opacity-20 ${product.isCompleted ? '': 'opacity-20'}`}
+              onClick={facade.saveProduct}
+            >
+              Crear Pizza
+            </button>
+          </span>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

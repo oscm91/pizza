@@ -1,5 +1,5 @@
 import React from 'react';
-import useFilling from './facade';
+import usePayments from './facade';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
@@ -9,7 +9,7 @@ jest.mock('../../worker/rootAsyncReducer', () => {
   return () => {
     return Promise.resolve((a, b) => {
       return {
-        payments: reducer(a, b),
+        payments: reducer(a.payments, b),
       };
     });
   };
@@ -25,7 +25,7 @@ describe('payments reducer', () => {
     const wrapper = ({ children }) => (
       <Provider store={store}>{children}</Provider>
     );
-    const { result, waitForNextUpdate } = renderHook(() => useFilling(), {
+    const { result, waitForNextUpdate } = renderHook(() => usePayments(), {
       wrapper,
     });
 

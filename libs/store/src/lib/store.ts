@@ -4,6 +4,7 @@ import { withAsyncReducer } from './middleware/workerMiddleware';
 import getAsyncReducer from './worker/rootAsyncReducer';
 import rootReducer from './reducers/rootReducer';
 import paymentsFacade from './reducers/payments/facade';
+import productsFacade from './reducers/products/facade';
 import {
   paymentsTableFormat,
   paymentsTableFilter,
@@ -27,6 +28,7 @@ const actions: any = {
 
 const facade: any = {
   paymentsFacade,
+  productsFacade
 };
 
 export { getStore, actions, facade };
