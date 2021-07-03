@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import {
   HomeSolid,
   PepperHotSolid,
@@ -11,7 +11,6 @@ import { Menu, MenuItem } from '../menu';
 import { Ingredient, IngredientItem } from '../ingredient';
 import { Mass, MassItem } from '../mass';
 import { Order, OrderItem } from '../order';
-import { saveProduct } from '../../../../store/src/lib/reducers/products/actions';
 
 export interface HomeProps {
   facade: any;
@@ -98,7 +97,10 @@ export function Home({ facade, history }: HomeProps) {
         style={{ height: 'max-content' }}
       >
         <main className="flex-col flex-grow px-4 pt-10">
-          <div className="flex justify-between items-center mb-4">
+          <h2 className="font-bold text-lg text-primary pb-8">
+            Crear nueva pizza
+          </h2>
+          <div className="flex justify-start space-x-2 items-center mb-4">
             <h2 className="font-bold text-lg text-secondary">
               Nombre de la pizza
             </h2>
@@ -160,7 +162,7 @@ export function Home({ facade, history }: HomeProps) {
             </h4>
             <p className="text-xs text-primary">Pesos Colombianos</p>
           </Card>
-          <Order>
+          { product.resume && product.resume.length && <Order>
             {product.resume.map(({ name, price, quantity, type }, i) => {
               return (
                 <OrderItem
@@ -190,7 +192,7 @@ export function Home({ facade, history }: HomeProps) {
                 </OrderItem>
               );
             })}
-          </Order>
+          </Order> || null}
           <span className="w-full text-center">
             <button
               disabled={!product.isCompleted}
