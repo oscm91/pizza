@@ -18,7 +18,10 @@ import {
   IngredientItem,
   PepperHotSolid,
   Mass,
-  MassItem, PizzaSliceSolid, Order, OrderItem
+  MassItem,
+  PizzaSliceSolid,
+  Order,
+  OrderItem,
 } from '@stepform/ui';
 
 export default {
@@ -79,60 +82,60 @@ export const dashboard = () => {
             </div>
             <div className="w-7/12">
               <Tabs>
-              <span
-                onClick={() => {
-                  console.log('today');
-                }}
-              >
-                Hoy
-              </span>
+                <span
+                  onClick={() => {
+                    console.log('today');
+                  }}
+                >
+                  Hoy
+                </span>
                 <span
                   data-active={true}
                   onClick={() => {
                     console.log('week');
                   }}
                 >
-                Esta semana
-              </span>
+                  Esta semana
+                </span>
                 <span
                   onClick={() => {
                     console.log('september');
                   }}
                 >
-                Septiembre
-              </span>
+                  Septiembre
+                </span>
               </Tabs>
               <span className="flex justify-end mt-4">
-              <div className="w-1/2">
-                <Filter open={true} onClick={() => {}}>
-                  <div className="flex flex-col py-4">
-                    <span className="text-secondary flex whitespace-nowrap items-center space-x-3">
-                      <input type="checkbox" id="datafono" />{' '}
-                      <label htmlFor="datafono" className="cursor-pointer">
-                        Cobro con datafono
-                      </label>
-                    </span>
-                    <span className="text-secondary flex whitespace-nowrap items-center space-x-3">
-                      <input type="checkbox" id="link" />{' '}
-                      <label htmlFor="link" className="cursor-pointer">
-                        Cobro con link de pagos
-                      </label>
-                    </span>
-                    <span className="text-secondary flex whitespace-nowrap items-center space-x-3">
-                      <input type="checkbox" id="all" />{' '}
-                      <label htmlFor="all" className="cursor-pointer">
-                        Ver todos
-                      </label>
-                    </span>
-                    <span className="text-center w-full">
-                      <button className="mt-4 px-14 py-2 bg-primary hover:opacity-20 rounded-full font-bold text-white">
-                        Aplicar
-                      </button>
-                    </span>
-                  </div>
-                </Filter>
-              </div>
-            </span>
+                <div className="w-1/2">
+                  <Filter open={true} onClick={() => {}}>
+                    <div className="flex flex-col py-4">
+                      <span className="text-secondary flex whitespace-nowrap items-center space-x-3">
+                        <input type="checkbox" id="datafono" />{' '}
+                        <label htmlFor="datafono" className="cursor-pointer">
+                          Cobro con datafono
+                        </label>
+                      </span>
+                      <span className="text-secondary flex whitespace-nowrap items-center space-x-3">
+                        <input type="checkbox" id="link" />{' '}
+                        <label htmlFor="link" className="cursor-pointer">
+                          Cobro con link de pagos
+                        </label>
+                      </span>
+                      <span className="text-secondary flex whitespace-nowrap items-center space-x-3">
+                        <input type="checkbox" id="all" />{' '}
+                        <label htmlFor="all" className="cursor-pointer">
+                          Ver todos
+                        </label>
+                      </span>
+                      <span className="text-center w-full">
+                        <button className="mt-4 px-14 py-2 bg-primary hover:opacity-20 rounded-full font-bold text-white">
+                          Aplicar
+                        </button>
+                      </span>
+                    </div>
+                  </Filter>
+                </div>
+              </span>
             </div>
           </div>
           <div className="mt-4">
@@ -147,9 +150,9 @@ export const dashboard = () => {
               {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                 <Row index={i}>
                   <div>
-                  <span className="flex">
-                    <CalculatorImage width="15px" /> Cobro exitoso
-                  </span>
+                    <span className="flex">
+                      <CalculatorImage width="15px" /> Cobro exitoso
+                    </span>
                   </div>
                   <div>
                     <p className="whitespace-nowrap text-grisclaro">

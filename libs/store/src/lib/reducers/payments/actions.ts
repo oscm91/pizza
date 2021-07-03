@@ -4,8 +4,31 @@ import {
   PAYMENTS_TABLE_UPDATE,
 } from '../../actions/actionTypes';
 
+export const addpayments = (payment, filters) => {
+  const action = async (dispatch, getState) => {
+    const state = getState()
+    const paymentsData = [].concat(state.payments.data, payment);
+
+    dispatch({
+      type: PAYMENTS_TABLE_UPDATE,
+      payload: {
+        data: paymentsData,
+        normalized: [],
+        filtered: [],
+      },
+    });
+
+
+    dispatch(paymentsTableFormat(paymentsData, filters));
+  };
+  return action;
+};
+
 export const getpayments = (search, filters) => {
   const action = async (dispatch, getState) => {
+    const state = getState()
+    const paymentsData = state.payments.data
+
     dispatch({
       type: PAYMENTS_TABLE_UPDATE,
       payload: {
@@ -18,258 +41,13 @@ export const getpayments = (search, filters) => {
     const response = await new Promise((resolve) => {
       setTimeout(() => {
         if (search === 'today') {
-          resolve([
-            {
-              id: 'fake-id-1234',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-          ]);
+          resolve(paymentsData);
         }
         if (search === 'week') {
-          resolve([
-            {
-              id: 'fake-id-1234',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-12345',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'external',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-12346',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'datafono',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-12347',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-123478',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-1234789',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-12347890',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-          ]);
+          resolve(paymentsData);
         }
         if (search === 'september') {
-          resolve([
-            {
-              id: 'fake-id-1234',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-12345',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'external',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-12346',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'datafono',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-12347',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-123478',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-1234789',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-12347890',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-01234',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-012345',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'external',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-012346',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'datafono',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-012347',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-0123478',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-01234789',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-            {
-              id: 'fake-id-012347890',
-              created_date: '2021-03-24T14:24:07.719989Z',
-              transaction_name: 'Cobro exitoso',
-              transaction_id: 'GZEN23784UBV2',
-              payment_status: 'started',
-              payment_type: 'link',
-              payment_method: '**** **** **** 7711',
-              payment_value: 25000,
-              payment_due: 1500,
-            },
-          ]);
+          resolve(paymentsData);
         }
       }, 100);
     });

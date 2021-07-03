@@ -64,11 +64,18 @@ export const home = () => {
       >
         <main className="flex-col flex-grow px-4 pt-10">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="font-bold text-lg text-secondary">Nombre de la pizza</h2>
-            <input className="py-2 px-14 font-bold text-secondary rounded-full border-2 border-primary bg-white hover:opacity-20 focus:opacity-100 focus:outline-none" type="text" />
+            <h2 className="font-bold text-lg text-secondary">
+              Nombre de la pizza
+            </h2>
+            <input
+              className="py-2 px-14 font-bold text-secondary rounded-full border-2 border-primary bg-white hover:opacity-20 focus:opacity-100 focus:outline-none"
+              type="text"
+            />
           </div>
           <div className="flex flex-col mb-4">
-            <h2 className="font-bold text-lg text-secondary mb-2">Ingredientes</h2>
+            <h2 className="font-bold text-lg text-secondary mb-2">
+              Ingredientes
+            </h2>
             <Ingredient>
               <IngredientItem
                 onClick={() => {

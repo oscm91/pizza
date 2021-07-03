@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveProduct, setName, addMass, removeMass, addIngredient, removeIngredient } from './actions';
+import {
+  saveProduct,
+  setName,
+  addMass,
+  removeMass,
+  addIngredient,
+  removeIngredient,
+} from './actions';
 
 export default () => {
   const products = useSelector((state) => state['products']);

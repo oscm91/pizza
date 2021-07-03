@@ -4,7 +4,7 @@ import {
   PepperHotSolid,
   PizzaSliceSolid,
   SignOutAltSolid,
-  ToolsSolid
+  ToolsSolid,
 } from '../images';
 import { Card } from '../card';
 import { Menu, MenuItem } from '../menu';
@@ -29,23 +29,36 @@ export function Home({ facade, history }: HomeProps) {
       price: 0,
       resume: [],
       isCompleted: false,
-    } };
+    },
+  };
 
-  const addIngredient = useCallback((ingredientName) => {
-    facade.addIngredient(ingredientName)
-  }, [facade.addIngredient])
+  const addIngredient = useCallback(
+    (ingredientName) => {
+      facade.addIngredient(ingredientName);
+    },
+    [facade.addIngredient]
+  );
 
-  const removeIngredient = useCallback((ingredientName) => {
-    facade.removeIngredient(ingredientName)
-  }, [facade.removeIngredient])
+  const removeIngredient = useCallback(
+    (ingredientName) => {
+      facade.removeIngredient(ingredientName);
+    },
+    [facade.removeIngredient]
+  );
 
-  const addMass = useCallback((massName) => {
-    facade.addMass(massName)
-  }, [facade.addMass])
+  const addMass = useCallback(
+    (massName) => {
+      facade.addMass(massName);
+    },
+    [facade.addMass]
+  );
 
-  const removeMass = useCallback((massName) => {
-    facade.removeMass(massName)
-  }, [facade.removeMass])
+  const removeMass = useCallback(
+    (massName) => {
+      facade.removeMass(massName);
+    },
+    [facade.removeMass]
+  );
 
   return (
     <div className="flex overflow-y-auto relative flex-row h-screen bg-backcontent">
@@ -86,22 +99,33 @@ export function Home({ facade, history }: HomeProps) {
       >
         <main className="flex-col flex-grow px-4 pt-10">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="font-bold text-lg text-secondary">Nombre de la pizza</h2>
-            <input value={product.name} onChange={(e) => facade.setName(e.target.value)} className="py-2 px-14 font-bold text-secondary rounded-full border-2 border-primary bg-white hover:opacity-20 focus:opacity-100 focus:outline-none" type="text" />
+            <h2 className="font-bold text-lg text-secondary">
+              Nombre de la pizza
+            </h2>
+            <input
+              value={product.name}
+              onChange={(e) => facade.setName(e.target.value)}
+              className="py-2 px-14 font-bold text-secondary rounded-full border-2 border-primary bg-white hover:opacity-20 focus:opacity-100 focus:outline-none"
+              type="text"
+            />
           </div>
           <div className="flex flex-col mb-4">
-            <h2 className="font-bold text-lg text-secondary mb-2">Ingredientes</h2>
+            <h2 className="font-bold text-lg text-secondary mb-2">
+              Ingredientes
+            </h2>
             <Ingredient>
               {ingredients.map(({ name }, i) => {
-                return (<IngredientItem
-                  key={name + i}
-                  onClick={() => {
-                    addIngredient(name)
-                  }}
-                >
-                  <PepperHotSolid />
-                  <p>{name}</p>
-                </IngredientItem>)
+                return (
+                  <IngredientItem
+                    key={name + i}
+                    onClick={() => {
+                      addIngredient(name);
+                    }}
+                  >
+                    <PepperHotSolid />
+                    <p>{name}</p>
+                  </IngredientItem>
+                );
               })}
             </Ingredient>
           </div>
@@ -109,18 +133,22 @@ export function Home({ facade, history }: HomeProps) {
             <h2 className="font-bold text-lg text-secondary mb-2">Base</h2>
             <Mass>
               {mass.map(({ name, price }, i) => {
-                return (<MassItem
-                  key={name + i}
-                  onClick={() => {
-                    addMass(name);
-                  }}
-                >
-                  <PizzaSliceSolid />
-                  <p>
-                    {name}
-                    <span className="block text-xs text-secondary">$ {new Intl.NumberFormat("es-ES").format(price)}</span>
-                  </p>
-                </MassItem>)
+                return (
+                  <MassItem
+                    key={name + i}
+                    onClick={() => {
+                      addMass(name);
+                    }}
+                  >
+                    <PizzaSliceSolid />
+                    <p>
+                      {name}
+                      <span className="block text-xs text-secondary">
+                        $ {new Intl.NumberFormat('es-ES').format(price)}
+                      </span>
+                    </p>
+                  </MassItem>
+                );
               })}
             </Mass>
           </div>
@@ -128,36 +156,51 @@ export function Home({ facade, history }: HomeProps) {
         <div className="flex-col flex-none space-y-4 pb-4">
           <Card title="Total de la pizza">
             <h4 className="text-4xl font-bold text-transparent bg-clip-text bg-primary">
-              $ {new Intl.NumberFormat("es-ES").format(product.price)}
+              $ {new Intl.NumberFormat('es-ES').format(product.price)}
             </h4>
             <p className="text-xs text-primary">Pesos Colombianos</p>
           </Card>
           <Order>
-            {product.resume.map(({name, price, quantity, type}, i) => {
-              return (<OrderItem
-                key={name + i}
-                onClick={() => {
-                  if(type === 'ingredient'){
-                    removeIngredient(name)
-                  }else{
-                    removeMass(name)
-                  }
-                }}
-              >
-                { type === 'ingredient' ? <PepperHotSolid /> : <PizzaSliceSolid />}
-                <p>
-                  {name}
-                  { type === 'ingredient' && <span className="block text-xs text-secondary">x {quantity}</span>}
-                </p>
-                {new Intl.NumberFormat("es-ES").format(price)}
-              </OrderItem>)
+            {product.resume.map(({ name, price, quantity, type }, i) => {
+              return (
+                <OrderItem
+                  key={name + i}
+                  onClick={() => {
+                    if (type === 'ingredient') {
+                      removeIngredient(name);
+                    } else {
+                      removeMass(name);
+                    }
+                  }}
+                >
+                  {type === 'ingredient' ? (
+                    <PepperHotSolid />
+                  ) : (
+                    <PizzaSliceSolid />
+                  )}
+                  <p>
+                    {name}
+                    {type === 'ingredient' && (
+                      <span className="block text-xs text-secondary">
+                        x {quantity}
+                      </span>
+                    )}
+                  </p>
+                  {new Intl.NumberFormat('es-ES').format(price)}
+                </OrderItem>
+              );
             })}
           </Order>
           <span className="w-full text-center">
             <button
               disabled={!product.isCompleted}
-              className={`py-2 px-14 mt-4 font-bold text-white rounded-full bg-primary hover:opacity-20 ${product.isCompleted ? '': 'opacity-20'}`}
-              onClick={facade.saveProduct}
+              className={`py-2 px-14 mt-4 font-bold text-white rounded-full bg-primary hover:opacity-20 ${
+                product.isCompleted ? '' : 'opacity-20'
+              }`}
+              onClick={async () => {
+                await facade.saveProduct()
+                window.alert("Se a creado la pizza, puedes ir a la opción de ventas en el menú, para continuar la venta")
+              }}
             >
               Crear Pizza
             </button>

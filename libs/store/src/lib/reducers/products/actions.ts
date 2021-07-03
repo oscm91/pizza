@@ -20,7 +20,6 @@ export const setName = (name) => {
 
 export const saveProduct = () => {
   const action = async (dispatch, getState) => {
-
     dispatch({
       type: PRODUCTS_SAVE,
       payload: undefined,

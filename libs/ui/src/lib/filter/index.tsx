@@ -21,7 +21,7 @@ export function Filter({ children, onClick, open }: FilterProps) {
           onClick={() => onClick(!open)}
         >
           <button className="text-primary" onClick={() => onClick(!open)}>
-            FILTRAR
+            Modulo de venta
           </button>
           <span className="absolute top-0 right-0 p-2">
             {open ? (

@@ -1,11 +1,13 @@
 function createWorkerMiddleware(getAsyncReducer) {
-  return ({ dispatch, getState }) => (next) => (action) => {
-    if (typeof action === 'function' && action.worker) {
-      return action(dispatch, getState, getAsyncReducer);
-    }
+  return ({ dispatch, getState }) =>
+    (next) =>
+    (action) => {
+      if (typeof action === 'function' && action.worker) {
+        return action(dispatch, getState, getAsyncReducer);
+      }
 
-    return next(action);
-  };
+      return next(action);
+    };
 }
 
 const workerMiddleware: ({

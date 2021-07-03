@@ -276,14 +276,14 @@ describe('products reducer', () => {
       isCompleted: false,
     });
 
-    const product = result.current.getState().product
+    const product = result.current.getState().product;
 
     act(() => {
       result.current.saveProduct();
     });
 
     expect(result.current.getState().list).toEqual({
-      [product.name]: product
+      [product.name]: product,
     });
   });
 });

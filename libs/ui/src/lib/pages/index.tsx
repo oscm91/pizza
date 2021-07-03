@@ -4,5 +4,5 @@ import Dashboard from './dashboard';
 
 export const Pages = {
   Home,
-  Dashboard
+  Dashboard,
 };

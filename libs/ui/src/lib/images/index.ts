@@ -35,5 +35,5 @@ export {
   PlusSolid,
   SearchSolid,
   SignOutAltSolid,
-  ToolsSolid
+  ToolsSolid,
 };

@@ -1,5 +1,10 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { CalculatorImage, HomeSolid, SignOutAltSolid, ToolsSolid } from '../images';
+import {
+  CalculatorImage,
+  HomeSolid,
+  SignOutAltSolid,
+  ToolsSolid,
+} from '../images';
 import { Card } from '../card';
 import { Filter } from '../filter';
 import { Head, Row, Table } from '../table';
@@ -11,9 +16,9 @@ export interface DashboardProps {
   history: any;
 }
 
-export function Dashboard({ facade, history  }: DashboardProps) {
-  const [openFilter, setOpenFilter] = useState(false);
-  const { filtered } = facade.getState() || { filtered: [] };
+export function Dashboard({ facade, history }: DashboardProps) {
+  const [openFilter, setOpenFilter] = useState(true);
+  const { filtered, list } = facade.getState() || { filtered: [] };
   const dataTitle = {
     today: 'de hoy',
     week: 'de esta semana',
@@ -66,104 +71,133 @@ export function Dashboard({ facade, history  }: DashboardProps) {
             <div className="w-5/12">
               <Card title="Total de ventas de septiembre">
                 <h4 className="bg-clip-text text-transparent bg-primary text-4xl font-bold">
-                  $1'560.000
+                  ${new Intl.NumberFormat('es-ES').format(facade.total || 0)}
                 </h4>
-                <p className="text-primary text-xs">Septiembre 21</p>
+                <p className="text-primary text-xs">Pesos Colombianos</p>
               </Card>
             </div>
             <div className="w-7/12">
               <Tabs>
-              <span
-                onClick={() => {
-                  console.log('today');
-                }}
-              >
-                Hoy
-              </span>
+                <span
+                  onClick={() => {
+                    console.log('today');
+                  }}
+                >
+                  Hoy
+                </span>
                 <span
                   data-active={true}
                   onClick={() => {
                     console.log('week');
                   }}
                 >
-                Esta semana
-              </span>
+                  Esta semana
+                </span>
                 <span
                   onClick={() => {
                     console.log('september');
                   }}
                 >
-                Septiembre
-              </span>
+                  Septiembre
+                </span>
               </Tabs>
               <span className="flex justify-end mt-4">
-              <div className="w-1/2">
-                <Filter open={true}>
-                  <div className="flex flex-col py-4">
-                    <span className="text-secondary flex whitespace-nowrap items-center space-x-3">
-                      <input type="checkbox" id="datafono" />{' '}
-                      <label htmlFor="datafono" className="cursor-pointer">
-                        Cobro con datafono
-                      </label>
-                    </span>
-                    <span className="text-secondary flex whitespace-nowrap items-center space-x-3">
-                      <input type="checkbox" id="link" />{' '}
-                      <label htmlFor="link" className="cursor-pointer">
-                        Cobro con link de pagos
-                      </label>
-                    </span>
-                    <span className="text-secondary flex whitespace-nowrap items-center space-x-3">
-                      <input type="checkbox" id="all" />{' '}
-                      <label htmlFor="all" className="cursor-pointer">
-                        Ver todos
-                      </label>
-                    </span>
-                    <span className="text-center w-full">
-                      <button className="mt-4 px-14 py-2 bg-primary hover:opacity-20 rounded-full font-bold text-white">
-                        Aplicar
-                      </button>
-                    </span>
-                  </div>
-                </Filter>
-              </div>
-            </span>
+                <div className="w-1/2">
+                  <Filter open={openFilter} onClick={setOpenFilter}>
+                    <div className="flex flex-col py-4">
+                      <span className="text-secondary flex flex-col whitespace-nowrap items-center space-x-3">
+                        <label
+                          htmlFor="product"
+                          className="font-bold text-lg text-secondary cursor-pointer"
+                        >
+                          Seleccione pizza
+                        </label>
+                        <select
+                          id="product"
+                          className="appearance-none py-2 px-14 font-bold text-secondary rounded-full border-2 border-primary bg-white hover:opacity-20 focus:opacity-100 focus:outline-none"
+                          value={facade.product}
+                          onChange={(e) => {
+                            facade.setProduct(
+                              e.target.value,
+                            );
+                          }}
+                        >
+                          <option></option>
+                          {Object.keys(list).map((productName) => {
+                            return (
+                              <option value={productName}>{productName}</option>
+                            );
+                          })}
+                        </select>
+                      </span>
+                      <span className="text-secondary flex flex-col whitespace-nowrap items-center space-x-3">
+                        <label
+                          htmlFor="name"
+                          className="font-bold text-lg text-secondary cursor-pointer"
+                        >
+                          Nombre de usuario
+                        </label>
+                        <input
+                          id="name"
+                          value={facade.buyer}
+                          className="py-2 px-14 font-bold text-secondary rounded-full border-2 border-primary bg-white hover:opacity-20 focus:opacity-100 focus:outline-none"
+                          onChange={(e) => {
+                            facade.setBuyer(
+                              e.target.value,
+                            );
+                          }}
+                          type="text"
+                        />
+                      </span>
+                      <span className="text-center w-full">
+                        <button className="mt-4 px-14 py-2 bg-primary hover:opacity-20 rounded-full font-bold text-white" onClick={async () => {
+                          await facade.sellProduct()
+                          setOpenFilter(false)
+                        }}>
+                          Vender
+                        </button>
+                      </span>
+                    </div>
+                  </Filter>
+                </div>
+              </span>
             </div>
           </div>
           <div className="mt-4">
-            <Table title="Total de ventas de septiembre">
+            <Table title="Total de ventas">
               <Head>
-                <div>Transacción</div>
+                <div>Comprador</div>
                 <div>Fecha y hora</div>
                 <div>Método de pago</div>
                 <div>ID transacción</div>
-                <div>Bold Monto</div>
+                <div>Monto</div>
               </Head>
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <Row index={i}>
+              {filtered.map((item: any, i) => (
+                <Row index={i} key={item.id}>
                   <div>
                   <span className="flex">
-                    <CalculatorImage width="15px" /> Cobro exitoso
+                    <CalculatorImage width="15px" /> {item.transaction_name}
                   </span>
                   </div>
                   <div>
                     <p className="whitespace-nowrap text-grisclaro">
-                      04/06/2020 - 17:14:24
+                      {item.date}
                     </p>
                   </div>
                   <div>
                     <p className="whitespace-nowrap text-grisclaro">
-                      **** **** **** 7711
+                      {item.payment_method}
                     </p>
                   </div>
                   <div>
-                    <p className="whitespace-nowrap text-grisclaro">
-                      GZEN23784UBV2
+                    <p className="whitespace-nowrap text-grisclaro truncate">
+                      {item.transaction_id}
                     </p>
                   </div>
                   <div>
-                    <span className="text-azul">$25.000</span>
-                    <span className="text-grisclaro">Deducción Bold</span>
-                    <span className="text-rojo">-$1.5000</span>
+                    <span className="text-azul">{item.amount}</span>
+                    <span className="text-grisclaro">Descuento</span>
+                    <span className="text-rojo">{item.deductions}</span>
                   </div>
                 </Row>
               ))}

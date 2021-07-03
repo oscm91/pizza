@@ -13,14 +13,16 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case PAYMENTS_TABLE_FORMAT: {
-      const normalized = Object.values(payload.payments).map((payments: any) => {
-        return {
-          ...payments,
-          date: payments.created_date,
-          amount: `$${payments.payment_value}`,
-          deductions: `-$${payments.payment_due}`,
-        };
-      });
+      const normalized = Object.values(payload.payments).map(
+        (payments: any) => {
+          return {
+            ...payments,
+            date: payments.created_date,
+            amount: `$${payments.payment_value}`,
+            deductions: `-$${payments.payment_due}`,
+          };
+        }
+      );
 
       return {
         ...state,
@@ -50,7 +52,7 @@ export default (state = initialState, { type, payload }) => {
       };
     }
     default: {
-      return initialState;
+      return state;
     }
   }
 };

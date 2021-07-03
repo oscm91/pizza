@@ -1,5 +1,6 @@
 import { applyMiddleware, compose, createStore, Store } from 'redux';
 import thunk from 'redux-thunk';
+import { save } from 'redux-localstorage-simple';
 import { withAsyncReducer } from './middleware/workerMiddleware';
 import getAsyncReducer from './worker/rootAsyncReducer';
 import rootReducer from './reducers/rootReducer';
@@ -17,7 +18,9 @@ function getStore(initialState): Store {
   return createStore(
     rootReducer,
     initialState,
-    composeEnhancers(applyMiddleware(withAsyncReducer(getAsyncReducer), thunk))
+    composeEnhancers(
+      applyMiddleware(save(), withAsyncReducer(getAsyncReducer), thunk)
+    )
   );
 }
 
@@ -28,7 +31,7 @@ const actions: any = {
 
 const facade: any = {
   paymentsFacade,
-  productsFacade
+  productsFacade,
 };
 
 export { getStore, actions, facade };

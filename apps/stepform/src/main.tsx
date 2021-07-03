@@ -2,18 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
-import { getStore, actions } from '@stepform/store';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom';
+import { getStore } from '@stepform/store';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { load } from 'redux-localstorage-simple';
 
 import Home from './app/home';
 import Dashboard from './app/dashboard';
 
-const store: Store<any, any> = getStore({});
+const store: Store<any, any> = getStore(load());
 
 ReactDOM.render(
   <React.StrictMode>

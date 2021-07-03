@@ -20,7 +20,9 @@ import { getStore } from '../../store';
 describe('payments reducer', () => {
   it('should get payments', async () => {
     const store: Store<any, any> = getStore({
-      payments: {},
+      payments: {
+        data: []
+      },
     });
     const wrapper = ({ children }) => (
       <Provider store={store}>{children}</Provider>
@@ -30,19 +32,13 @@ describe('payments reducer', () => {
     });
 
     act(() => {
-      result.current.getData("week");
+      result.current.getData('week');
     });
 
     await waitForNextUpdate();
 
     expect(
       result.current.getState().filtered.map((payments) => payments.id)
-    ).toEqual([ 'fake-id-1234',
-      'fake-id-12345',
-      'fake-id-12346',
-      'fake-id-12347',
-      'fake-id-123478',
-      'fake-id-1234789',
-      'fake-id-12347890' ]);
+    ).toEqual([]);
   });
 });

@@ -18,7 +18,7 @@ export const ingredient = () => {
             console.log('ingredient 1');
           }}
         >
-          <PepperHotSolid/>
+          <PepperHotSolid />
           <p>Pizza</p>
         </IngredientItem>
         <IngredientItem
@@ -26,7 +26,7 @@ export const ingredient = () => {
             console.log('ingredient 2');
           }}
         >
-          <PepperHotSolid/>
+          <PepperHotSolid />
           <p>Pizza</p>
         </IngredientItem>
         <IngredientItem
@@ -34,7 +34,7 @@ export const ingredient = () => {
             console.log('ingredient 3');
           }}
         >
-          <PepperHotSolid/>
+          <PepperHotSolid />
           <p>Pizza</p>
         </IngredientItem>
         <IngredientItem
@@ -42,7 +42,7 @@ export const ingredient = () => {
             console.log('ingredient 4');
           }}
         >
-          <PepperHotSolid/>
+          <PepperHotSolid />
           <p>Pizza</p>
         </IngredientItem>
         <IngredientItem
@@ -50,7 +50,7 @@ export const ingredient = () => {
             console.log('ingredient 5');
           }}
         >
-          <PepperHotSolid/>
+          <PepperHotSolid />
           <p>Pizza</p>
         </IngredientItem>
         <IngredientItem
@@ -58,7 +58,7 @@ export const ingredient = () => {
             console.log('ingredient 6');
           }}
         >
-          <PepperHotSolid/>
+          <PepperHotSolid />
           <p>Pizza</p>
         </IngredientItem>
         <IngredientItem
@@ -66,7 +66,7 @@ export const ingredient = () => {
             console.log('ingredient 7');
           }}
         >
-          <PepperHotSolid/>
+          <PepperHotSolid />
           <p>Pizza</p>
         </IngredientItem>
         <IngredientItem
@@ -74,7 +74,7 @@ export const ingredient = () => {
             console.log('ingredient 8');
           }}
         >
-          <PepperHotSolid/>
+          <PepperHotSolid />
           <p>Pizza</p>
         </IngredientItem>
         <IngredientItem
@@ -82,7 +82,7 @@ export const ingredient = () => {
             console.log('ingredient 9');
           }}
         >
-          <PepperHotSolid/>
+          <PepperHotSolid />
           <p>Pizza</p>
         </IngredientItem>
       </Ingredient>

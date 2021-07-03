@@ -2,7 +2,10 @@ import {
   PRODUCTS_SET_NAME,
   PRODUCTS_ADD_MASS,
   PRODUCTS_UPDATE,
-  PRODUCTS_ADD_INGREDIENT, PRODUCTS_REMOVE_INGREDIENT, PRODUCTS_REMOVE_MASS, PRODUCTS_SAVE
+  PRODUCTS_ADD_INGREDIENT,
+  PRODUCTS_REMOVE_INGREDIENT,
+  PRODUCTS_REMOVE_MASS,
+  PRODUCTS_SAVE,
 } from '../../actions/actionTypes';
 
 export const initialState = {
@@ -28,7 +31,7 @@ export const initialState = {
       price: 3000,
     },
     {
-      name: 'Maiz',
+      name: 'Maduro',
       price: 3000,
     },
     {
@@ -36,7 +39,7 @@ export const initialState = {
       price: 3000,
     },
     {
-      name: 'Carne de rez',
+      name: 'Carne de res',
       price: 3000,
     },
     {
@@ -90,7 +93,7 @@ export const initialState = {
     resume: [],
     isCompleted: false,
   },
-  list: []
+  list: [],
 };
 
 const getPrice = (mass, ingredients) => {
@@ -106,18 +109,18 @@ const getPrice = (mass, ingredients) => {
 };
 
 const getResume = (mass, ingredients) => {
-  const resume = []
-  if(mass) {
+  const resume = [];
+  if (mass) {
     resume.push({
       ...mass,
       type: 'mass',
-      quantity: 1
-    })
+      quantity: 1,
+    });
   }
 
-  if(ingredients && ingredients.length){
-    const resumeIngredients =  ingredients.reduce((resume, ingredient) => {
-      const resumeIngredient = (resume[ingredient.name] || {})
+  if (ingredients && ingredients.length) {
+    const resumeIngredients = ingredients.reduce((resume, ingredient) => {
+      const resumeIngredient = resume[ingredient.name] || {};
       return {
         ...resume,
         [ingredient.name]: {
@@ -125,10 +128,10 @@ const getResume = (mass, ingredients) => {
           price: (resumeIngredient.price || 0) + ingredient.price,
           type: 'ingredient',
           quantity: (resumeIngredient.quantity || 0) + 1,
-        }
-      }
-    }, {})
-    resume.push(...Object.values(resumeIngredients))
+        },
+      };
+    }, {});
+    resume.push(...Object.values(resumeIngredients));
   }
 
   return resume;
@@ -146,7 +149,11 @@ export default (state = initialState, { type, payload }) => {
         product: {
           ...state.product,
           name: payload,
-          isCompleted: isComplete(payload, state.product.mass, state.product.ingredients),
+          isCompleted: isComplete(
+            payload,
+            state.product.mass,
+            state.product.ingredients
+          ),
         },
       };
     }
@@ -161,7 +168,11 @@ export default (state = initialState, { type, payload }) => {
           mass: mass,
           price: getPrice(mass, state.product.ingredients),
           resume: getResume(mass, state.product.ingredients),
-          isCompleted: isComplete(state.product.name, mass, state.product.ingredients),
+          isCompleted: isComplete(
+            state.product.name,
+            mass,
+            state.product.ingredients
+          ),
         },
       };
     }
@@ -176,15 +187,21 @@ export default (state = initialState, { type, payload }) => {
           mass: mass,
           price: getPrice(mass, state.product.ingredients),
           resume: getResume(mass, state.product.ingredients),
-          isCompleted: isComplete(state.product.name, mass, state.product.ingredients),
+          isCompleted: isComplete(
+            state.product.name,
+            mass,
+            state.product.ingredients
+          ),
         },
       };
     }
 
     case PRODUCTS_ADD_INGREDIENT: {
       const nameBase = payload;
-      const ingredient = state.ingredients.find((ingredient) => ingredient.name === nameBase);
-      const ingredients = [].concat(state.product.ingredients, ingredient)
+      const ingredient = state.ingredients.find(
+        (ingredient) => ingredient.name === nameBase
+      );
+      const ingredients = [].concat(state.product.ingredients, ingredient);
 
       return {
         ...state,
@@ -193,24 +210,30 @@ export default (state = initialState, { type, payload }) => {
           ingredients: ingredients,
           price: getPrice(state.product.mass, ingredients),
           resume: getResume(state.product.mass, ingredients),
-          isCompleted: isComplete(state.product.name, state.product.mass, ingredients),
+          isCompleted: isComplete(
+            state.product.name,
+            state.product.mass,
+            ingredients
+          ),
         },
       };
     }
 
     case PRODUCTS_REMOVE_INGREDIENT: {
       const nameBase = payload;
-      const ingredient = state.ingredients.find((ingredient) => ingredient.name === nameBase);
+      const ingredient = state.ingredients.find(
+        (ingredient) => ingredient.name === nameBase
+      );
 
-      let isRemoved = false
+      let isRemoved = false;
 
       const ingredients = state.product.ingredients.filter((item) => {
-        if (item.name === ingredient.name && !isRemoved){
-          isRemoved = true
-          return false
+        if (item.name === ingredient.name && !isRemoved) {
+          isRemoved = true;
+          return false;
         }
-        return true
-      })
+        return true;
+      });
 
       return {
         ...state,
@@ -219,7 +242,11 @@ export default (state = initialState, { type, payload }) => {
           ingredients: ingredients,
           price: getPrice(state.product.mass, ingredients),
           resume: getResume(state.product.mass, ingredients),
-          isCompleted: isComplete(state.product.name, state.product.mass, ingredients),
+          isCompleted: isComplete(
+            state.product.name,
+            state.product.mass,
+            ingredients
+          ),
         },
       };
     }
@@ -229,9 +256,9 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         list: {
           ...state.list,
-          [state.product.name]: state.product
+          [state.product.name]: state.product,
         },
-        product: initialState.product
+        product: initialState.product,
       };
     }
 
@@ -242,7 +269,7 @@ export default (state = initialState, { type, payload }) => {
     }
 
     default: {
-      return initialState;
+      return state;
     }
   }
 };

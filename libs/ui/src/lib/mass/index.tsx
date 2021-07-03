@@ -6,7 +6,9 @@ export interface MassProps {
 }
 
 export function Mass({ children }: MassProps) {
-  return <div className="flex flex-row gap-4 overflow-scroll p-2">{children}</div>;
+  return (
+    <div className="flex flex-row gap-4 overflow-scroll p-2">{children}</div>
+  );
 }
 
 export interface MassItemProps {
@@ -32,8 +34,8 @@ export function MassItem({ children, ...props }: MassItemProps) {
       <div className="flex items-center space-x-2 pt-4 text-left">
         {Text}
         <span className="p-2 rounded-full bg-primary">
-        <PlusSolid className="w-3 h-3 text-white fill-current" />
-      </span>
+          <PlusSolid className="w-3 h-3 text-white fill-current" />
+        </span>
       </div>
     </div>
   );

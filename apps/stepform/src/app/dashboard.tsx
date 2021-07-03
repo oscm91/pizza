@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react';
+import React, {
+  useCallback,
+} from 'react';
 import { Pages } from '@stepform/ui';
 import { facade } from '@stepform/store';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 function Dashboard() {
   const paymentsFacade = facade.paymentsFacade();
@@ -10,11 +12,11 @@ function Dashboard() {
   const historyFacade = useCallback(() => {
     return {
       goTo: (location) => history.push(location),
-      getPathname: history.location.pathname || ''
-    }
-  }, [history])
+      getPathname: history.location.pathname || '',
+    };
+  }, [history]);
 
-  return <Pages.Dashboard facade={paymentsFacade} history={historyFacade()}/>;
+  return <Pages.Dashboard facade={paymentsFacade} history={historyFacade()} />;
 }
 
 export default Dashboard;
