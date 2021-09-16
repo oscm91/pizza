@@ -29,7 +29,8 @@
     "storybook:build": "nx run ui:build-storybook",
     "chromatic": "npx chromatic --project-token=dea96f0485b8 --storybook-build-dir=dist/storybook/ui --output-dir=dist/chromatic/ui",
     "predeploy": "yarn build --prod --baseHref=pizza",
-    "deploy": "gh-pages -d dist/apps/stepform"
+    "deploy": "gh-pages -d dist/apps/stepform",
+    "stryker": "cd ./libs/store && npx stryker run"
   },
   "private": true,
   "dependencies": {
@@ -65,6 +66,9 @@
     "@storybook/addon-essentials": "~6.3.2",
     "@storybook/addon-knobs": "~6.3.0",
     "@storybook/react": "~6.3.2",
+    "@stryker-mutator/core": "^5.4.0",
+    "@stryker-mutator/jest-runner": "^5.4.0",
+    "@stryker-mutator/typescript": "^4.0.0",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/react": "12.0.0",
     "@testing-library/react-hooks": "^7.0.1",
