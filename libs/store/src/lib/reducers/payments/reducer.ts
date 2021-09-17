@@ -56,3 +56,5 @@ export default (state = initialState, { type, payload }) => {
     }
   }
 };
+
+export const suma = (a, b) => a + b;

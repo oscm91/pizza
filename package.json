@@ -30,7 +30,8 @@
     "chromatic": "npx chromatic --project-token=dea96f0485b8 --storybook-build-dir=dist/storybook/ui --output-dir=dist/chromatic/ui",
     "predeploy": "yarn build --prod --baseHref=pizza",
     "deploy": "gh-pages -d dist/apps/stepform",
-    "stryker": "cd ./libs/store && npx stryker run"
+    "stryker": "cd ./libs/store && npx stryker run",
+    "devtools:cucumber:report": "node ./tools/generate-cucumber-report.js"
   },
   "private": true,
   "dependencies": {
@@ -63,15 +64,15 @@
     "@nrwl/tao": "12.5.1",
     "@nrwl/web": "12.5.1",
     "@nrwl/workspace": "12.5.1",
-    "@storybook/addon-essentials": "~6.3.2",
-    "@storybook/addon-knobs": "~6.3.0",
     "@storybook/addon-a11y": "~6.3.8",
     "@storybook/addon-actions": "~6.3.8",
     "@storybook/addon-backgrounds": "~6.3.8",
     "@storybook/addon-centered": "~5.3.21",
     "@storybook/addon-docs": "~6.3.8",
+    "@storybook/addon-essentials": "~6.3.2",
     "@storybook/addon-google-analytics": "~6.2.9",
     "@storybook/addon-jest": "~6.3.8",
+    "@storybook/addon-knobs": "~6.3.0",
     "@storybook/addon-links": "~6.3.8",
     "@storybook/addon-notes": "~5.3.21",
     "@storybook/addon-options": "~5.3.21",
@@ -79,14 +80,15 @@
     "@storybook/addon-storysource": "~6.3.8",
     "@storybook/addon-viewport": "~6.3.8",
     "@storybook/addons": "~6.3.8",
-    "@storybook/source-loader": "~6.3.8",
     "@storybook/react": "~6.3.2",
+    "@storybook/source-loader": "~6.3.8",
     "@stryker-mutator/core": "^5.4.0",
     "@stryker-mutator/jest-runner": "^5.4.0",
     "@stryker-mutator/typescript": "^4.0.0",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/react": "12.0.0",
     "@testing-library/react-hooks": "^7.0.1",
+    "@types/cypress-cucumber-preprocessor": "^4.0.1",
     "@types/jest": "^26.0.23",
     "@types/node": "15.12.5",
     "@types/react": "17.0.11",
@@ -99,7 +101,9 @@
     "babel-jest": "27.0.6",
     "babel-loader": "8.2.2",
     "chromatic": "^5.9.2",
+    "cucumber-html-reporter": "^5.5.0",
     "cypress": "^7.6.0",
+    "cypress-cucumber-preprocessor": "^4.2.0",
     "dotenv": "10.0.0",
     "eslint": "7.29.0",
     "eslint-config-prettier": "8.3.0",
@@ -126,5 +130,8 @@
     "typescript": "4.3.5",
     "url-loader": "^4.1.1",
     "worker-plugin": "^5.0.1"
+  },
+  "resolutions": {
+    "webpack": "4.46.0"
   }
 }
