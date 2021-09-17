@@ -6,14 +6,14 @@ export default {
   title: 'Logo',
 };
 
-export const logo = () => {
-  const props: LogoProps = {
-    onClick: () => {},
-  };
-
+export const logo = (props) => {
   return (
     <div className="p-4 bg-primary">
       <Logo {...props}>Button</Logo>
     </div>
   );
+};
+
+logo.args = {
+  onClick: () => {},
 };

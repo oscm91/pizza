@@ -7,11 +7,7 @@ export default {
   title: 'Header',
 };
 
-export const header = () => {
-  const props: HeaderProps = {
-    onClick: () => {},
-  };
-
+export const header = (props) => {
   return (
     <Header {...props}>
       <nav className="flex justify-center items-center text-white space-x-8 font-light">
@@ -22,4 +18,8 @@ export const header = () => {
       </nav>
     </Header>
   );
+};
+
+header.args = {
+  onClick: () => {},
 };

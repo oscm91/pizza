@@ -117,9 +117,7 @@ export function Dashboard({ facade, history }: DashboardProps) {
                           className="appearance-none py-2 px-14 font-bold text-secondary rounded-full border-2 border-primary bg-white hover:opacity-20 focus:opacity-100 focus:outline-none"
                           value={facade.product}
                           onChange={(e) => {
-                            facade.setProduct(
-                              e.target.value,
-                            );
+                            facade.setProduct(e.target.value);
                           }}
                         >
                           <option></option>
@@ -142,18 +140,19 @@ export function Dashboard({ facade, history }: DashboardProps) {
                           value={facade.buyer}
                           className="py-2 px-14 font-bold text-secondary rounded-full border-2 border-primary bg-white hover:opacity-20 focus:opacity-100 focus:outline-none"
                           onChange={(e) => {
-                            facade.setBuyer(
-                              e.target.value,
-                            );
+                            facade.setBuyer(e.target.value);
                           }}
                           type="text"
                         />
                       </span>
                       <span className="text-center w-full">
-                        <button className="mt-4 px-14 py-2 bg-primary hover:opacity-20 rounded-full font-bold text-white" onClick={async () => {
-                          await facade.sellProduct()
-                          setOpenFilter(false)
-                        }}>
+                        <button
+                          className="mt-4 px-14 py-2 bg-primary hover:opacity-20 rounded-full font-bold text-white"
+                          onClick={async () => {
+                            await facade.sellProduct();
+                            setOpenFilter(false);
+                          }}
+                        >
                           Vender
                         </button>
                       </span>
@@ -175,9 +174,9 @@ export function Dashboard({ facade, history }: DashboardProps) {
               {filtered.map((item: any, i) => (
                 <Row index={i} key={item.id}>
                   <div>
-                  <span className="flex">
-                    <CalculatorImage width="15px" /> {item.transaction_name}
-                  </span>
+                    <span className="flex">
+                      <CalculatorImage width="15px" /> {item.transaction_name}
+                    </span>
                   </div>
                   <div>
                     <p className="whitespace-nowrap text-grisclaro">

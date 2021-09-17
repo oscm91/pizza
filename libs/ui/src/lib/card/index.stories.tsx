@@ -6,11 +6,7 @@ export default {
   title: 'Card',
 };
 
-export const card = () => {
-  const props: CardProps = {
-    title: 'Total de ventas de septiembre',
-  };
-
+export const card = (props) => {
   return (
     <Card {...props}>
       <h4 className="bg-clip-text text-transparent bg-primary text-4xl font-bold">
@@ -19,4 +15,8 @@ export const card = () => {
       <p className="text-primary text-xs">Septiembre 21</p>
     </Card>
   );
+};
+
+card.args = {
+  title: 'Total de ventas de septiembre',
 };

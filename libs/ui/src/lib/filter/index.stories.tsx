@@ -6,12 +6,7 @@ export default {
   title: 'Filter',
 };
 
-export const filter = () => {
-  const props: FilterProps = {
-    onClick: () => {},
-    open: false,
-  };
-
+export const filter = (props) => {
   return (
     <div className="flex">
       <Filter {...props}>
@@ -34,4 +29,9 @@ export const filter = () => {
       </Filter>
     </div>
   );
+};
+
+filter.args = {
+  onClick: () => {},
+  open: false,
 };

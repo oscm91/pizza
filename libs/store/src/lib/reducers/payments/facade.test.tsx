@@ -21,7 +21,7 @@ describe('payments reducer', () => {
   it('should get payments', async () => {
     const store: Store<any, any> = getStore({
       payments: {
-        data: []
+        data: [],
       },
     });
     const wrapper = ({ children }) => (

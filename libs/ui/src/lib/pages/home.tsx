@@ -162,37 +162,40 @@ export function Home({ facade, history }: HomeProps) {
             </h4>
             <p className="text-xs text-primary">Pesos Colombianos</p>
           </Card>
-          { product.resume && product.resume.length && <Order>
-            {product.resume.map(({ name, price, quantity, type }, i) => {
-              return (
-                <OrderItem
-                  key={name + i}
-                  onClick={() => {
-                    if (type === 'ingredient') {
-                      removeIngredient(name);
-                    } else {
-                      removeMass(name);
-                    }
-                  }}
-                >
-                  {type === 'ingredient' ? (
-                    <PepperHotSolid />
-                  ) : (
-                    <PizzaSliceSolid />
-                  )}
-                  <p>
-                    {name}
-                    {type === 'ingredient' && (
-                      <span className="block text-xs text-secondary">
-                        x {quantity}
-                      </span>
+          {(product.resume && product.resume.length && (
+            <Order>
+              {product.resume.map(({ name, price, quantity, type }, i) => {
+                return (
+                  <OrderItem
+                    key={name + i}
+                    onClick={() => {
+                      if (type === 'ingredient') {
+                        removeIngredient(name);
+                      } else {
+                        removeMass(name);
+                      }
+                    }}
+                  >
+                    {type === 'ingredient' ? (
+                      <PepperHotSolid />
+                    ) : (
+                      <PizzaSliceSolid />
                     )}
-                  </p>
-                  {new Intl.NumberFormat('es-ES').format(price)}
-                </OrderItem>
-              );
-            })}
-          </Order> || null}
+                    <p>
+                      {name}
+                      {type === 'ingredient' && (
+                        <span className="block text-xs text-secondary">
+                          x {quantity}
+                        </span>
+                      )}
+                    </p>
+                    {new Intl.NumberFormat('es-ES').format(price)}
+                  </OrderItem>
+                );
+              })}
+            </Order>
+          )) ||
+            null}
           <span className="w-full text-center">
             <button
               disabled={!product.isCompleted}
@@ -200,8 +203,10 @@ export function Home({ facade, history }: HomeProps) {
                 product.isCompleted ? '' : 'opacity-20'
               }`}
               onClick={async () => {
-                await facade.saveProduct()
-                window.alert("Se a creado la pizza, puedes ir a la opción de ventas en el menú, para continuar la venta")
+                await facade.saveProduct();
+                window.alert(
+                  'Se a creado la pizza, puedes ir a la opción de ventas en el menú, para continuar la venta'
+                );
               }}
             >
               Crear Pizza

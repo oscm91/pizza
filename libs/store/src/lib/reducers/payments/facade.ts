@@ -2,20 +2,23 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { paymentsTableFilter, getpayments, addpayments } from './actions';
 
-function UUID(){
+function UUID() {
   let dt = new Date().getTime();
-  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    const r = (dt + Math.random() * 16) % 16 | 0;
-    dt = Math.floor(dt/16);
-    return (c=='x' ? r :(r&0x3|0x8)).toString(16);
-  });
+  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+    /[xy]/g,
+    function (c) {
+      const r = (dt + Math.random() * 16) % 16 | 0;
+      dt = Math.floor(dt / 16);
+      return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16);
+    }
+  );
   return uuid;
 }
 
 export default () => {
   const payments = useSelector((state) => ({
     ...state['payments'],
-    list: state['products'].list
+    list: state['products'].list,
   }));
   const dispatch = useDispatch();
 
@@ -56,26 +59,34 @@ export default () => {
     product,
     setBuyer,
     setProduct,
-    total: (payments.data || []).reduce((total, payment) => total + (payment.payment_value || 0), 0),
+    total: (payments.data || []).reduce(
+      (total, payment) => total + (payment.payment_value || 0),
+      0
+    ),
     sellProduct: () => {
-      if(!buyer || !product){
-        return
+      if (!buyer || !product) {
+        return;
       }
 
-      dispatch(addpayments({
-        id: 'fake-id-' + UUID(),
-        created_date: new Date().toISOString(),
-        transaction_name: buyer,
-        transaction_id: UUID(),
-        payment_status: 'started',
-        payment_type: product,
-        payment_method: '**** **** **** 7711',
-        payment_value: payments.list[product].price,
-        payment_due: 0,
-      }, filters));
+      dispatch(
+        addpayments(
+          {
+            id: 'fake-id-' + UUID(),
+            created_date: new Date().toISOString(),
+            transaction_name: buyer,
+            transaction_id: UUID(),
+            payment_status: 'started',
+            payment_type: product,
+            payment_method: '**** **** **** 7711',
+            payment_value: payments.list[product].price,
+            payment_due: 0,
+          },
+          filters
+        )
+      );
 
-      setBuyer('')
-      setProduct('')
-    }
+      setBuyer('');
+      setProduct('');
+    },
   };
 };

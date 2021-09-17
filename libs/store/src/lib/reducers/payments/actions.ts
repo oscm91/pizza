@@ -6,7 +6,7 @@ import {
 
 export const addpayments = (payment, filters) => {
   const action = async (dispatch, getState) => {
-    const state = getState()
+    const state = getState();
     const paymentsData = [].concat(state.payments.data, payment);
 
     dispatch({
@@ -18,7 +18,6 @@ export const addpayments = (payment, filters) => {
       },
     });
 
-
     dispatch(paymentsTableFormat(paymentsData, filters));
   };
   return action;
@@ -26,8 +25,8 @@ export const addpayments = (payment, filters) => {
 
 export const getpayments = (search, filters) => {
   const action = async (dispatch, getState) => {
-    const state = getState()
-    const paymentsData = state.payments.data
+    const state = getState();
+    const paymentsData = state.payments.data;
 
     dispatch({
       type: PAYMENTS_TABLE_UPDATE,

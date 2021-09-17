@@ -1,6 +1,4 @@
-import React, {
-  useCallback,
-} from 'react';
+import React, { useCallback } from 'react';
 import { Pages } from '@stepform/ui';
 import { facade } from '@stepform/store';
 import { useHistory } from 'react-router-dom';

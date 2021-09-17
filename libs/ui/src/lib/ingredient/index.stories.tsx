@@ -7,9 +7,7 @@ export default {
   title: 'Ingredient',
 };
 
-export const ingredient = () => {
-  const props: IngredientProps = {};
-
+export const ingredient = (props) => {
   return (
     <div className="flex bg-backcontent p-4">
       <Ingredient {...props}>
@@ -89,3 +87,5 @@ export const ingredient = () => {
     </div>
   );
 };
+
+ingredient.args = {};
