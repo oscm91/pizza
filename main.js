@@ -3962,7 +3962,7 @@ try {
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
 /******/ 	(() => {
-/******/ 		__webpack_require__.p = "http://localhost:3001/";
+/******/ 		__webpack_require__.p = "https://oscm91.github.io/pizza/";
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/consumes */
