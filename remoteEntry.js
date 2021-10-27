@@ -282,7 +282,7 @@ var moduleMap = {
 	"./logo": () => {
 		return Promise.all([__webpack_require__.e("default-libs_ui_src_lib_images_index_ts-node_modules_react_jsx-runtime_js"), __webpack_require__.e("libs_ui_src_lib_logo_index_tsx")]).then(() => (() => ((__webpack_require__(9712)))));
 	},
-	"./card": () => {
+	"/card": () => {
 		return Promise.all([__webpack_require__.e("default-libs_ui_src_lib_images_index_ts-node_modules_react_jsx-runtime_js"), __webpack_require__.e("libs_ui_src_lib_card_index_tsx")]).then(() => (() => ((__webpack_require__(4681)))));
 	}
 };
