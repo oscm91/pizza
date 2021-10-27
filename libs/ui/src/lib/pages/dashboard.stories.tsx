@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  Header,
-  HelpImage,
   Card,
   Tabs,
   Table,
@@ -13,16 +11,8 @@ import {
   MenuItem,
   HomeSolid,
   ToolsSolid,
-  SignOutAltSolid,
-  Ingredient,
-  IngredientItem,
-  PepperHotSolid,
-  Mass,
-  MassItem,
-  PizzaSliceSolid,
-  Order,
-  OrderItem,
-} from '@stepform/ui';
+  SignOutAltSolid
+} from '../../index';
 
 export default {
   component: () => {},

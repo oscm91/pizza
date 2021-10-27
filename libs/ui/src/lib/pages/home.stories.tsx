@@ -14,7 +14,7 @@ import {
   Ingredient,
   MassItem,
   Mass,
-} from '@stepform/ui';
+} from '../../index';
 
 export default {
   component: () => {},

@@ -12,4 +12,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-viewport',
   ],
+  webpackFinal: async (config) => {
+    return config;
+  }
 };

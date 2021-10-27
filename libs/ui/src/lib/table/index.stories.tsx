@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, TableProps, Head, Row } from './index';
-import { CalculatorImage } from '@stepform/ui';
+import { CalculatorImage } from '../../index';
 
 export default {
   component: Table,

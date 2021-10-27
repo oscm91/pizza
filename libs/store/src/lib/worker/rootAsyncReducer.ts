@@ -1,4 +1,9 @@
 import { wrap } from 'comlink';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import workerReducer from "../reducers/workerReducer.worker";
+
+const worker = new workerReducer();
 
 let singletonWorker = null;
 let singletonBlocker = false;
@@ -6,9 +11,7 @@ let singletonBlocker = false;
 async function getAsyncReducer() {
   if (!singletonWorker && !singletonBlocker) {
     singletonBlocker = true;
-    singletonWorker = await wrap(
-      new Worker('../reducers/workerReducer.ts', { type: 'module' })
-    );
+    singletonWorker = await wrap(worker);
   }
   return new Promise((resolve) => {
     setTimeout(() => {

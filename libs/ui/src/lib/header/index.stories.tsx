@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header, HeaderProps } from './index';
-import { HelpImage } from '@stepform/ui';
+import { Header } from './index';
+import { HelpImage } from '../../index';
 
 export default {
   component: Header,
