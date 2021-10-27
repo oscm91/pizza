@@ -4248,7 +4248,7 @@ if (false) {}
 
 /***/ }),
 
-/***/ 37244:
+/***/ 87406:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -4258,6 +4258,9 @@ var moduleMap = {
 	},
 	"./Logo": () => {
 		return Promise.resolve().then(() => (() => ((__webpack_require__(19712)))));
+	},
+	"./Home": () => {
+		return Promise.resolve().then(() => (() => ((__webpack_require__(75610)))));
 	}
 };
 var get = (module, getScope) => {
@@ -4368,7 +4371,7 @@ function _objectSpread2(target) {
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ var __webpack_exports__ = (__webpack_exec__(65526), __webpack_exec__(37244));
+/******/ var __webpack_exports__ = (__webpack_exec__(65526), __webpack_exec__(87406));
 /******/ main = __webpack_exports__;
 /******/ }
 ]);
