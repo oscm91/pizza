@@ -8621,34 +8621,6 @@ $({ target: 'URL', proto: true, enumerable: true }, {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
-(() => {
-(function () {
-  var check = document.createElement('script');
-  if (!('noModule' in check) && 'onbeforeload' in check) {
-    var support = false;
-    document.addEventListener(
-      'beforeload',
-      function (e) {
-        if (e.target === check) {
-          support = true;
-        } else if (!e.target.hasAttribute('nomodule') || !support) {
-          return;
-        }
-        e.preventDefault();
-      },
-      true
-    );
-
-    check.type = 'module';
-    check.src = '.';
-    document.head.appendChild(check);
-    check.remove();
-  }
-})();
-
-})();
-
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
@@ -8858,3 +8830,4 @@ __webpack_require__.r(__webpack_exports__);
 
 /******/ })()
 ;
+//# sourceMappingURL=polyfills.js.map

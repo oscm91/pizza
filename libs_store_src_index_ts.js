@@ -719,15 +719,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8717);
-/* harmony import */ var _payments_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9771);
-/* harmony import */ var _products_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5639);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8717);
+/* harmony import */ var _payments_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9771);
+/* harmony import */ var _products_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5639);
 
 
 
-const appReducer = (0,redux__WEBPACK_IMPORTED_MODULE_0__.combineReducers)({
-  payments: _payments_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  products: _products_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+const appReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  payments: _payments_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
+  products: _products_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 
 const rootReducer = (state, action) => {
@@ -747,15 +747,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "actions": () => (/* binding */ actions),
 /* harmony export */   "facade": () => (/* binding */ facade)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8717);
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3292);
-/* harmony import */ var redux_localstorage_simple__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6659);
-/* harmony import */ var _middleware_workerMiddleware__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5183);
-/* harmony import */ var _worker_rootAsyncReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7096);
-/* harmony import */ var _reducers_rootReducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9883);
-/* harmony import */ var _reducers_payments_facade__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(456);
-/* harmony import */ var _reducers_products_facade__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8111);
-/* harmony import */ var _reducers_payments_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7448);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8717);
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3292);
+/* harmony import */ var redux_localstorage_simple__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6659);
+/* harmony import */ var _middleware_workerMiddleware__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5183);
+/* harmony import */ var _worker_rootAsyncReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7096);
+/* harmony import */ var _reducers_rootReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9883);
+/* harmony import */ var _reducers_payments_facade__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(456);
+/* harmony import */ var _reducers_products_facade__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8111);
+/* harmony import */ var _reducers_payments_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7448);
 
 
 
@@ -765,19 +765,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || redux__WEBPACK_IMPORTED_MODULE_0__.compose;
+const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || redux__WEBPACK_IMPORTED_MODULE_8__.compose;
 
 function getStore(initialState) {
-  return (0,redux__WEBPACK_IMPORTED_MODULE_0__.createStore)(_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_5__["default"], initialState, composeEnhancers((0,redux__WEBPACK_IMPORTED_MODULE_0__.applyMiddleware)((0,redux_localstorage_simple__WEBPACK_IMPORTED_MODULE_2__.save)(), (0,_middleware_workerMiddleware__WEBPACK_IMPORTED_MODULE_3__.withAsyncReducer)(_worker_rootAsyncReducer__WEBPACK_IMPORTED_MODULE_4__["default"]), redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"])));
+  return (0,redux__WEBPACK_IMPORTED_MODULE_8__.createStore)(_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_4__["default"], initialState, composeEnhancers((0,redux__WEBPACK_IMPORTED_MODULE_8__.applyMiddleware)((0,redux_localstorage_simple__WEBPACK_IMPORTED_MODULE_1__.save)(), (0,_middleware_workerMiddleware__WEBPACK_IMPORTED_MODULE_2__.withAsyncReducer)(_worker_rootAsyncReducer__WEBPACK_IMPORTED_MODULE_3__["default"]), redux_thunk__WEBPACK_IMPORTED_MODULE_0__["default"])));
 }
 
 const actions = {
-  paymentsTableFormat: _reducers_payments_actions__WEBPACK_IMPORTED_MODULE_8__.paymentsTableFormat,
-  paymentsTableFilter: _reducers_payments_actions__WEBPACK_IMPORTED_MODULE_8__.paymentsTableFilter
+  paymentsTableFormat: _reducers_payments_actions__WEBPACK_IMPORTED_MODULE_7__.paymentsTableFormat,
+  paymentsTableFilter: _reducers_payments_actions__WEBPACK_IMPORTED_MODULE_7__.paymentsTableFilter
 };
 const facade = {
-  paymentsFacade: _reducers_payments_facade__WEBPACK_IMPORTED_MODULE_6__["default"],
-  productsFacade: _reducers_products_facade__WEBPACK_IMPORTED_MODULE_7__["default"]
+  paymentsFacade: _reducers_payments_facade__WEBPACK_IMPORTED_MODULE_5__["default"],
+  productsFacade: _reducers_products_facade__WEBPACK_IMPORTED_MODULE_6__["default"]
 };
 
 
@@ -790,20 +790,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var comlink__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(758);
-/* harmony import */ var _reducers_workerReducer_worker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6584);
+/* harmony import */ var comlink__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(758);
+/* harmony import */ var _reducers_workerReducer_worker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6584);
  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 
 
-const worker = new _reducers_workerReducer_worker__WEBPACK_IMPORTED_MODULE_1__["default"]();
+const worker = new _reducers_workerReducer_worker__WEBPACK_IMPORTED_MODULE_0__["default"]();
 let singletonWorker = null;
 let singletonBlocker = false;
 
 async function getAsyncReducer() {
   if (!singletonWorker && !singletonBlocker) {
     singletonBlocker = true;
-    singletonWorker = await (0,comlink__WEBPACK_IMPORTED_MODULE_0__.wrap)(worker);
+    singletonWorker = await (0,comlink__WEBPACK_IMPORTED_MODULE_1__.wrap)(worker);
   }
 
   return new Promise(resolve => {
@@ -825,9 +825,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Worker_fn)
 /* harmony export */ });
 function Worker_fn() {
-  return new Worker(__webpack_require__.p + "workerReducer.worker.b3792cfd6e1055c7.esm.worker.js");
+  return new Worker(__webpack_require__.p + "workerReducer.worker.worker.js");
 }
 
 /***/ })
 
 }]);
+//# sourceMappingURL=libs_store_src_index_ts.js.map
