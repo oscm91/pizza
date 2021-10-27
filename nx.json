@@ -28,25 +28,6 @@
       }
     }
   },
-  "projects": {
-    "stepform": {
-      "tags": []
-    },
-    "stepform-e2e": {
-      "tags": [],
-      "implicitDependencies": ["stepform"]
-    },
-    "store": {
-      "tags": []
-    },
-    "ui": {
-      "tags": []
-    },
-    "ui-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ui"]
-    }
-  },
   "targetDependencies": {
     "build": [
       {
@@ -54,5 +35,25 @@
         "projects": "dependencies"
       }
     ]
-  }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "stepform"
 }
