@@ -1,7 +1,7 @@
 import {
   PAYMENTS_TABLE_FORMAT,
   PAYMENTS_TABLE_FILTER,
-  PAYMENTS_TABLE_UPDATE,
+  PAYMENTS_TABLE_UPDATE, PAYMENTS_TABLE_FILTER_BY_YEAR
 } from '../../actions/actionTypes';
 
 const initialState = {
@@ -43,6 +43,17 @@ export default (state = initialState, { type, payload }) => {
         filtered: payload.payments.filter((payments) =>
           payload.filters.includes(payments.payment_type)
         ),
+      };
+    }
+    case PAYMENTS_TABLE_FILTER_BY_YEAR: {
+      const { year } = payload;
+      console.log(year);
+      return {
+        data: state.data,
+        normalized: state.normalized,
+        filtered: state.normalized.filter((item) => {
+          return item.created_date.includes(year)
+        }),
       };
     }
     case PAYMENTS_TABLE_UPDATE: {
