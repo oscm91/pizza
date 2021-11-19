@@ -47,13 +47,10 @@ export default (state = initialState, { type, payload }) => {
     }
     case PAYMENTS_TABLE_FILTER_BY_YEAR: {
       const { year } = payload;
-      console.log(year);
+
       return {
-        data: state.data,
-        normalized: state.normalized,
-        filtered: state.normalized.filter((item) => {
-          return item.created_date.includes(year)
-        }),
+        ...state,
+        filtered: state.normalized.filter((item) => item.created_date.includes(year)),
       };
     }
     case PAYMENTS_TABLE_UPDATE: {
@@ -67,5 +64,3 @@ export default (state = initialState, { type, payload }) => {
     }
   }
 };
-
-export const suma = (a, b) => a + b;
